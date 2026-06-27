@@ -4,7 +4,7 @@ class Solution {
 public:
     int maximumLength(vector<int>& nums) {
 
-        map<ll, int> feq;
+       unordered_map<ll, int> feq;
         int one = 0;
 
         for (int x : nums) {
