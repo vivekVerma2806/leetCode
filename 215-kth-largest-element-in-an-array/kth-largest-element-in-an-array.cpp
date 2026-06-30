@@ -2,15 +2,16 @@ class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
 
-        priority_queue<int>maxheap;
-        for(int it :  nums){
-            maxheap.push(it);
-        }
-        while(k>1){
-            maxheap.pop();
-            k--;
-        }
+        // ye optimal hain Q ke esh main insertion ka cost bach ja raha hai 
+        
+        priority_queue<int,vector<int>,greater<int>>minheap;
 
-        return maxheap.top();
+      for(int it  : nums){
+        minheap.push(it);
+        if(minheap.size()>k){
+            minheap.pop();
+        }
+      }
+      return minheap.top();
     }
 };
