@@ -44,7 +44,7 @@ bool isPossible(unordered_map<int, vector<pair<int,int>>> &adj,
         }
     }
 
-    return cost[n - 1] <= k;
+    return cost[n - 1] <= k && cost[n-1]>=mid;
 }
 
 int findMaxPathScore(vector<vector<int>>& edges,
