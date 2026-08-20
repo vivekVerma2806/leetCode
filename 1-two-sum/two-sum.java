@@ -1,22 +1,28 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         
-        // two sum dono intx ka sum target ke equ hona chaiye 
-        // kaise 
-        // can i  use shildimg widow 
-        int [] ans=new int[2];
-     int n  =  nums.length;
-        for(int i =0 ; i < n ;i++){
-            int x = target-nums[i];
-            
-            for(int j = i+1 ;  j <n ; j++){
-                if(nums[j]==x){
-                    ans[0]=i;
-                    ans[1]=j;
-                    break;
+        // unordered map use karo ele then inx ele ko aur find karo targte -ele 
+        
+        HashMap<Integer,Integer>map=new HashMap<>();
+         for(int i = 0  ; i< nums.length ;i++){
+            map.put(nums[i],i);
+         }
+
+         // key aur value hogya 
+         // ab ak ele ko aur find karo 
+
+         for(int i =0 ; i <nums.length ;i++){
+            int x=nums[i];
+            int val=target-x;
+
+            if(map.containsKey(val)){
+                // kart hain 
+                int second_idx=map.get(val);
+                if(second_idx!=i){
+                    return new int [] {i,second_idx};
                 }
             }
-        }
-        return ans;
+         }
+      return new int[]{};
     }
 }
