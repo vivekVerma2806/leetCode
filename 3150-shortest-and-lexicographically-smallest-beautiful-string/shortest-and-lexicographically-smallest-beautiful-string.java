@@ -2,8 +2,8 @@ class Solution {
     public String shortestBeautifulSubstring(String s, int k) {
 
         int left = 0;
-        ArrayList<String> p_ans = new ArrayList<>();
         int count_ones = 0;
+        String ans = "";
 
         for (int right = 0; right < s.length(); right++) {
 
@@ -13,7 +13,12 @@ class Solution {
 
             while (count_ones == k) {
 
-                p_ans.add(s.substring(left, right + 1));
+                String curr = s.substring(left, right + 1);
+
+                if(ans.equals("") || curr.length()<ans.length() || (curr.length()==ans.length() && curr.compareTo(ans)<0)){
+                    ans=curr;
+                }
+
 
                 if (s.charAt(left) == '1') {
                     count_ones--;
@@ -23,17 +28,6 @@ class Solution {
             }
         }
 
-        if (p_ans.size() == 0) {
-            return "";
-        }
-
-        p_ans.sort((a, b) -> {
-            if (a.length() != b.length()) {
-                return a.length() - b.length();
-            }
-            return a.compareTo(b);
-        });
-
-        return p_ans.get(0);
+        return ans;
     }
 }
