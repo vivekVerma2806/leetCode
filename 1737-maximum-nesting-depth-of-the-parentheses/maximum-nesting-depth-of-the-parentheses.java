@@ -1,17 +1,17 @@
 class Solution {
     public int maxDepth(String s) {
-        int depth = 0;
-        int maxDepth = 0;
-
-        for (char c : s.toCharArray()) {
-            if (c == '(') {
-                depth++;
-                maxDepth = Math.max(maxDepth, depth);
-            } else if (c == ')') {
-                depth--;
-            }
+        // (  ye aaya hain to count 1 
+        int count=0;  int ans=0;
+        for(char ch : s.toCharArray()){
+                  if(ch=='('){
+                    count++;
+                  ans=  Math.max(ans,count);
+                  }
+                  if(ch==')'){
+                    count--;
+                  }
         }
 
-        return maxDepth;
+        return ans;
     }
 }
