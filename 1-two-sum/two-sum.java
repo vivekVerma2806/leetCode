@@ -1,28 +1,22 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        
-        // unordered map use karo ele then inx ele ko aur find karo targte -ele 
-        
-        HashMap<Integer,Integer>map=new HashMap<>();
-         for(int i = 0  ; i< nums.length ;i++){
-            map.put(nums[i],i);
-         }
+          HashMap<Integer,Integer>mp=new HashMap<>(); int []ans=new int [2];
 
-         // key aur value hogya 
-         // ab ak ele ko aur find karo 
+          int n=nums.length;
 
-         for(int i =0 ; i <nums.length ;i++){
-            int x=nums[i];
-            int val=target-x;
+          for(int i=0;i<n ;i++)
+          {
+             int need=target-nums[i];
+             if(mp.containsKey(need)){
+                    ans[0]=i;
+                    ans[1]=mp.get(need);
+                    break;
+             }else{
+                 mp.put(nums[i],i);
+             }
+          }
 
-            if(map.containsKey(val)){
-                // kart hain 
-                int second_idx=map.get(val);
-                if(second_idx!=i){
-                    return new int [] {i,second_idx};
-                }
-            }
-         }
-      return new int[]{};
+
+         return ans;
     }
 }
