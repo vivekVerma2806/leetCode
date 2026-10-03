@@ -1,17 +1,22 @@
 class Solution {
     public int maxSubArray(int[] nums) {
-        int n =nums.length;
-        // maxSum pcuh hain subArray ka to kaise karo  kandale Algortim 
+        // max_subArray
+        int ans=nums[0]; int n=nums.length;
+        int sum=0;
 
-        int currSum=0;  int maxSum=Integer.MIN_VALUE; 
-        for(int i =0 ; i < n ; i++){
-            // ye current sum ka vslue le liya hain  
-            currSum+=nums[i];
-            maxSum=Math.max(currSum,maxSum);
-            if(currSum<0){
-                currSum=0;
-            }
+
+        for(int i=0 ;i<n;i++){
+
+              if(sum+nums[i]<0){
+                  sum=0;
+                  ans=Math.max(ans,nums[i]);
+                  
+              }else{
+                sum+=nums[i];
+                ans=Math.max(ans,sum);
+              }
         }
-      return maxSum;
+
+        return ans;
     }
 }
