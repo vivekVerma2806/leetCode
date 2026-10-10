@@ -1,69 +1,36 @@
 class Solution {
     public int[][] merge(int[][] intervals) {
 
-        // intervals ko sort karna hain
-        Arrays.sort(intervals, (a, b) -> {
-            if (a[0] != b[0]) {
-                return a[0] - b[0];
-            }
-            return a[1] - b[1];
-        });
+        int n=intervals.length; if(n==1) return intervals;
 
-        // sorted intervals ko traverse karo
-        List<List<Integer>> list = new ArrayList<>();
+         Arrays.sort(intervals,(a,b)->{
+            return Integer.compare(a[0],b[0]);
+         });
 
-        int n = intervals.length;
-
-        if (n == 1) return intervals;
-
-        int end = intervals[0][1];
-        int i = 1;
-        int k = 0;
-
-        while (i != n) {
-
-            int st_next = intervals[i][0];
-
-            if (st_next <= end) {
-                // overlap
-                end = Math.max(end, intervals[i][1]);
-                i++;
-            } 
-            else {
-                // no overlap
-                List<Integer> pair = new ArrayList<>();
-
-                pair.add(intervals[k][0]);
-                pair.add(end);
-
-                list.add(pair);
-
-                k = i;
-                end = intervals[i][1];
-
-                i++;
-            }
-        }
-
-        // last interval add karo
-        List<Integer> pair = new ArrayList<>();
-        pair.add(intervals[k][0]);
-        pair.add(end);
-        list.add(pair);
-
-        int size = list.size();
-
-        int[][] ans = new int[size][2];
-
-        for (int j = 0; j < size; j++) {
-
-            int st = list.get(j).get(0);
-            int ed = list.get(j).get(1);
-
-            ans[j][0] = st;
-            ans[j][1] = ed;
-        }
-
-        return ans;
+         int st_p=intervals[0][0]; int end_p=intervals[0][1];
+         List<List<Integer>>val=new ArrayList<>();
+         for(int i=1 ;i < n ;i++){
+               if(end_p>=intervals[i][0]){
+                   end_p=Math.max(end_p,intervals[i][1]);
+               }else{
+                   List<Integer>curr=new ArrayList<>();
+                   curr.add(st_p);
+                   curr.add(end_p);
+                   val.add(curr);
+                   st_p=intervals[i][0];end_p=intervals[i][1];
+               }
+         }
+         
+                 List<Integer>curr=new ArrayList<>();
+                   curr.add(st_p);
+                   curr.add(end_p);
+                   val.add(curr);
+                   int m=val.size();
+          int [][] ans=new int [m][2];    
+          for(int i=0  ;i <m ;i++){
+                ans[i][0]=val.get(i).get(0);
+                ans[i][1]=val.get(i).get(1);
+          }  
+          return ans;   
     }
 }
