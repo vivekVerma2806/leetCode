@@ -14,16 +14,17 @@
  * }
  */
 class Solution {
-    private boolean slove(TreeNode left ,TreeNode right){
-         if(left==null && right==null) return true;
-         if(left==null || right==null) return false;
-         if(left.val==right.val){
-            return slove( left.left,right.right) && slove( left.right,right.left);
-         }
-         return false;
+    boolean solve(TreeNode l,TreeNode r){
+        if(l==null && r==null) return true;
+        if(l==null || r==null)  return false;
+        if(l.val==r.val){
+            if(solve(l.left,r.right) && solve(l.right,r.left) ) return true;
+        }
+        return false;
     }
     public boolean isSymmetric(TreeNode root) {
-            if(root==null) return true;
-            return slove(root.left,root.right);
+         if(root==null) return true;
+
+         return solve(root.left,root.right);
     }
 }
