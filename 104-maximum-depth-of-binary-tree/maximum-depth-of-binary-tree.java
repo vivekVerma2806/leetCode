@@ -14,14 +14,9 @@
  * }
  */
 class Solution {
-     private int slove(TreeNode root){
-        if(root==null) return 0;
-        int left=1+slove(root.left);
-        int right=1+slove(root.right);
-        return Math.max(left,right);
-     }
     public int maxDepth(TreeNode root) {
+        if(root==null) return 0;
 
-        return slove(root);
+        return Math.max(1+maxDepth(root.left) , 1+maxDepth(root.right));
     }
 }
