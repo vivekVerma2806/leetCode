@@ -25,7 +25,7 @@ class Solution {
              rev(nums,0,n-1);
              return; 
          }
-         //swap karma hain
+     //    swap karma hain
          for(int i=n-1 ;i>=0 ;i--){
             if(nums[i]>nums[p_idx]){
                 int temp=nums[i];
@@ -34,6 +34,7 @@ class Solution {
                 break;
             }
          }
+      
        rev(nums,p_idx+1,n-1);
        return;    
     }
