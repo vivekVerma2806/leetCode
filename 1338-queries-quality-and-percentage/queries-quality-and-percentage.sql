@@ -1,6 +1,8 @@
 # Write your MySQL query statement below
-SELECT q.query_name ,ROUND(AVG(q.rating/q.position),2)  quality ,
- ROUND(SUM(q.rating<3)*100/ COUNT(*),2) as poor_query_percentage
-# yaha par count karna hain  3 se kam koun koun hain then count grup main row kitne hain 
-FROM Queries q
-GROUP BY q.query_name;
+
+SELECT t1.query_name,ROUND(SUM(t1.rating/t1.position)/COUNT(*) ,2)AS quality,ROUND( SUM( CASE 
+    WHEN t1.rating <3 THEN 1 ELSE 0 END
+ ) /COUNT(*)*100 ,2)
+AS poor_query_percentage
+FROM Queries t1 
+GROUP BY query_name;
