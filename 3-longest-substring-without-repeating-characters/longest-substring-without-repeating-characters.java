@@ -1,19 +1,20 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        // mujhe kuch aise mentain karna pare ga like set agar ush set maai lil gaya to ush se pahle wala kamax count kar lunga 
-        int n =s.length();
-        int ans=0;
-         int i=0; int j=0;
-         HashSet<Character>set=new HashSet<>();
-         while(j<n){
+
+        int n=s.length();
+        HashSet<Character>set=new HashSet<>();
+        int i=0; int j=0;  int ans=0;
+        while(j<n){
+            
             while(set.contains(s.charAt(j))){
-                  set.remove(s.charAt(i));
-                  i++;
+                 
+                 set.remove(s.charAt(i));
+                 i++;
             }
             set.add(s.charAt(j));
-            ans=Math.max(ans,set.size());
+          ans=Math.max(ans,j-i+1);
             j++;
-         }
+        }
         return ans;
     }
 }
